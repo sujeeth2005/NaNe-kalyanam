@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveenkrishna & Nehashree - Wedding Invitation</title>
+    <meta name="description" content="You are cordially invited to celebrate the wedding of B.B. Naveenkrishna and G. Nehashree. Join us on August 23, 2026.">
+    <!-- Google Fonts: Cormorant Garamond, Playfair Display & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Three.js & GSAP CDNs for 3D Cinematic Secret Garden Intro -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="sage-gold-theme">
+
+    <!-- Fixed 3D WebGL Canvas in the background -->
+    <canvas id="garden-canvas"></canvas>
+
+    <!-- Floating Flower/Eucalyptus Leaves Container -->
+    <div id="petals-container" class="petals-container"></div>
+
+    <!-- 3D WebGL Secret Garden Preloader Gate -->
+    <div id="invitation-gate" class="preloader-gate 3d-garden-gate">
+        <!-- Stranger Things Chapter Style Loader -->
+        <div id="stranger-loader" class="stranger-loader-container">
+            <h1 id="stranger-hashtag" class="stranger-hashtag cormorant">#NaNe</h1>
+        </div>
+    </div>
+
+
+    <!-- Main Container -->
+    <main id="main-content" class="main-content hidden-content">
+        
+        <!-- 1. Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    
+                    <!-- Left: Invitation Card -->
+                    <div class="hero-left-col scroll-reveal">
+                        <!-- 3D Card Wrapper (Tilt effect kept) -->
+                        <div class="card-3d-wrapper">
+                            <div id="gatefold-card" class="card-3d-container simple-tilt-card">
+                                <!-- Inner Card Content -->
+                                <div class="card-inner-content text-center">
+                                    <p class="card-hashtag">#NaNe</p>
+                                    <div class="ganesha-gold-logo">ॐ</div>
+                                    <p class="ramajayam-text">Sri Ramajayam | ஶ்ரீ ராமஜெயம்</p>
+                                    <p class="subtitle">TOGETHER WITH THEIR FAMILIES</p>
+                                    <h1 class="couple-names cormorant">
+                                        Naveenkrishna
+                                        <br>
+                                        <span class="ampersand">&</span>
+                                        <br>
+                                        Nehashree
+                                    </h1>
+                                    <p class="invitation-phrase">Invite you to celebrate their union and the beginning of a lifetime together</p>
+                                    
+                                    <div class="divider-gold"></div>
+                                    
+                                    <div class="details-grid">
+                                        <div class="detail-item">
+                                            <span class="detail-label">WEDDING DATE</span>
+                                            <span class="detail-val">Sunday, 23rd August 2026</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">COORDINATES</span>
+                                            <span class="detail-val">Sri Devi Mahal, Chennai</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Framed Couple Photo Card -->
+                    <div class="hero-right-col scroll-reveal">
+                        <div class="hero-photo-card">
+                            <img src="assets/couple_mural.jpg" alt="Naveenkrishna & Nehashree" class="hero-photo-img">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Big Countdown Timer Below the Photo/Card -->
+                <div class="hero-bottom-countdown scroll-reveal">
+                    <div class="countdown-bar-wrapper">
+                        <div class="countdown-bar-item">
+                            <span id="days" class="time-big-num font-gradient cormorant">00</span>
+                            <span class="time-big-label">Days</span>
+                        </div>
+                        <div class="countdown-bar-divider"></div>
+                        <div class="countdown-bar-item">
+                            <span id="hours" class="time-big-num font-gradient cormorant">00</span>
+                            <span class="time-big-label">Hours</span>
+                        </div>
+                        <div class="countdown-bar-divider"></div>
+                        <div class="countdown-bar-item">
+                            <span id="minutes" class="time-big-num font-gradient cormorant">00</span>
+                            <span class="time-big-label">Minutes</span>
+                        </div>
+                        <div class="countdown-bar-divider"></div>
+                        <div class="countdown-bar-item">
+                            <span id="seconds" class="time-big-num font-gradient cormorant">00</span>
+                            <span class="time-big-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow-down animate-bounce">
+                <a href="#couple"><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </section>
+
+        <!-- 2. Bride & Groom Profiles Section -->
+        <section id="couple" class="section couple-profile-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title cormorant">THE BRIDE & THE GROOM</h2>
+                    <p class="section-subtitle">Meet the hearts at the center of this celebration</p>
+                </div>
+
+                <div class="couple-profile-grid scroll-reveal">
+                    <!-- Bride Profile -->
+                    <div class="couple-profile-card bride-card">
+                        <div class="couple-img-wrapper">
+                            <img src="assets/bride_namaste.jpg" alt="G. Nehashree" class="couple-profile-img">
+                        </div>
+                        <div class="couple-info text-center">
+                            <span class="couple-title cormorant">The Bride</span>
+                            <h3 class="couple-name cormorant">Selvi. G. Nehashree</h3>
+                            <span class="couple-meta">B.E., TCS</span>
+                            <div class="couple-family-info">
+                                <div class="family-divider"></div>
+                                <div class="family-info-item">
+                                    <span class="family-label">Parents</span>
+                                    <span class="family-names">Mr. N. Gokulakrishnan & Mrs. G. Usha</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Groom Profile -->
+                    <div class="couple-profile-card groom-card">
+                        <div class="couple-img-wrapper">
+                            <img src="assets/groom_namaste.jpg" alt="B.B. Naveenkrishna" class="couple-profile-img">
+                        </div>
+                        <div class="couple-info text-center">
+                            <span class="couple-title cormorant">The Groom</span>
+                            <h3 class="couple-name cormorant">Selvan. B.B. Naveenkrishna</h3>
+                            <span class="couple-meta">B.E., Infosys</span>
+                            <div class="couple-family-info">
+                                <div class="family-divider"></div>
+                                <div class="family-info-item">
+                                    <span class="family-label">Parents</span>
+                                    <span class="family-names">Mr. D. Babu & Mrs. B. Bhavani</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Wedding Events -->
+        <section id="events" class="section events-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title cormorant">THE WEDDING CELEBRATIONS</h2>
+                    <p class="section-subtitle">Details of the ceremonies and protocols</p>
+                </div>
+
+                <div class="events-grid">
+                    <!-- Card 1: Grand Reception -->
+                    <div class="event-card scroll-reveal">
+                        <h3 class="event-card-title cormorant">Grand Reception</h3>
+                        <div class="event-card-detail">
+                            <p><i class="far fa-calendar-alt"></i> Saturday, 22nd Aug 2026</p>
+                            <p><i class="far fa-clock"></i> 06:30 PM onwards</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Sri Devi Mahal, Chennai</p>
+                            <p><i class="fas fa-tshirt"></i> Dress Code: Indo-Western / Formal Wear</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Wedding Ceremony -->
+                    <div class="event-card highlight scroll-reveal">
+                        <div class="event-badge">MUHURTHAM</div>
+                        <h3 class="event-card-title cormorant">Wedding Ceremony</h3>
+                        <div class="event-card-detail">
+                            <p><i class="far fa-calendar-alt"></i> Sunday, 23rd Aug 2026</p>
+                            <p><i class="far fa-clock"></i> 07:30 AM to 09:00 AM</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Sri Devi Mahal, Chennai</p>
+                            <p><i class="fas fa-tshirt"></i> Dress Code: Traditional Silk Saree / Veshti</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Interactive Venue Section -->
+        <section id="venue" class="section venue-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title cormorant">THE VENUE COORDINATES</h2>
+                    <p class="section-subtitle">Map coordinates, parking, and lodging protocols</p>
+                </div>
+
+                <div class="venue-layout-grid">
+                    <!-- Left Column: Google Maps Embed -->
+                    <div class="venue-map-panel scroll-reveal">
+                        <div class="map-embed-wrapper">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5831518641974!2d80.19532507567784!3d12.934484087377196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525df1f9530467%3A0xc078832a8ffeb53f!2sSri%20Devi%20Mahal!5e0!3m2!1sen!2sin!4v1718472000000!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="380" 
+                                style="border:0; border-radius: 16px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <div class="text-center button-container">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Sri+Devi+Mahal+Vengaivasal+Main+Road+Santhosapuram+Chennai" target="_blank" rel="noopener" class="btn btn-primary">
+                                <i class="fas fa-location-arrow"></i> Launch Navigator
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Parking & Hotels -->
+                    <div class="venue-info-panel scroll-reveal">
+                        <!-- Parking Card -->
+                        <div class="info-card">
+                            <div class="info-card-icon"><i class="fas fa-parking"></i></div>
+                            <div class="info-card-content">
+                                <h3 class="cormorant">Parking Information</h3>
+                                <p>
+                                    Ample valet and self-parking are available inside the Sri Devi Mahal premises. Separate parking bays are designated for guests of the Bride and Groom.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Hotel List Card -->
+                        <div class="info-card">
+                            <div class="info-card-icon"><i class="fas fa-hotel"></i></div>
+                            <div class="info-card-content">
+                                <h3 class="cormorant">Nearby Accommodations</h3>
+                                <p class="hotel-info-text">For out-of-town guests, we recommend the following premium lodging coordinates:</p>
+                                <ul class="hotel-list">
+                                    <li>
+                                        <strong>The Westin Velachery</strong>
+                                        <span>OMR Road // 20 Mins from Venue</span>
+                                    </li>
+                                    <li>
+                                        <strong>Feathers - A Radha Hotel</strong>
+                                        <span>Manapakkam // 25 Mins from Venue</span>
+                                    </li>
+                                    <li>
+                                        <strong>Hablis Hotel</strong>
+                                        <span>Guindy // 25 Mins from Venue</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. Photo Gallery -->
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title cormorant">OUR MOMENTS GALLERY</h2>
+                    <p class="section-subtitle">Visual snapshots of childhood, couple, and engagement logs</p>
+                </div>
+
+                <!-- Pinterest-style Masonry Gallery Layout -->
+                <div class="pinterest-gallery scroll-reveal">
+                    <!-- Item 1 -->
+                    <div class="masonry-item item-normal" data-src="assets/couple_mural.jpg" data-caption="Traditional Mural Captures // Sri Devi Mahal">
+                        <img src="assets/couple_mural.jpg" alt="Couple Mural" class="masonry-img">
+                        <div class="masonry-overlay">
+                            <span class="cormorant">Union Moments</span>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="masonry-item item-tall" data-src="assets/bride_namaste.jpg" data-caption="Bride Greeting Dossier // Kanjeevaram Saree Grace">
+                        <img src="assets/bride_namaste.jpg" alt="Bride Greeting" class="masonry-img">
+                        <div class="masonry-overlay">
+                            <span class="cormorant">Sartorial Grace</span>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="masonry-item item-normal" data-src="assets/groom_namaste.jpg" data-caption="Groom Greeting Dossier // Sherwani Elegance">
+                        <img src="assets/groom_namaste.jpg" alt="Groom Greeting" class="masonry-img">
+                        <div class="masonry-overlay">
+                            <span class="cormorant">New Chapter</span>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="masonry-item item-very-tall" data-src="assets/childhood_photos.png" data-caption="Nostalgic Childhood Stream // Retro Polaroid Mappings">
+                        <img src="assets/childhood_photos.png" alt="Childhood Memories" class="masonry-img">
+                        <div class="masonry-overlay">
+                            <span class="cormorant">Childhood Archives</span>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="masonry-item item-tall" data-src="assets/engagement_moment.png" data-caption="Ring Exchange Protocol // Gold Ring Union">
+                        <img src="assets/engagement_moment.png" alt="Engagement Rings Exchange" class="masonry-img">
+                        <div class="masonry-overlay">
+                            <span class="cormorant">Engagement Ceremony</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal for Masonry Gallery -->
+        <div id="lightbox-modal" class="lightbox-modal">
+            <span class="lightbox-close">&times;</span>
+            <button class="lightbox-nav prev-slide" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+            <div class="lightbox-content-wrapper">
+                <img id="lightbox-img" class="lightbox-img" src="" alt="">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+            </div>
+            <button class="lightbox-nav next-slide" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+
+        <!-- Social & Upload Section -->
+        <section id="social" class="section social-section">
+            <div class="container">
+                <div class="social-layout-grid">
+                    
+                    <!-- Left: Instagram Tag -->
+                    <div class="social-tag-card text-center scroll-reveal">
+                        <div class="instagram-icon"><i class="fab fa-instagram"></i></div>
+                        <h2 class="cormorant hashtag-title">#NaNe2026</h2>
+                        <p class="hashtag-desc">Capture your favorite moments and share them on Instagram using our official wedding hashtag.</p>
+                        <a href="https://www.instagram.com/explore/tags/NaNe2026" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fab fa-instagram"></i> Explore Hashtag</a>
+                    </div>
+                    
+                    <!-- Right: Photo Upload QR Code -->
+                    <div class="qr-upload-card text-center scroll-reveal">
+                        <div class="qr-title-group">
+                            <h3 class="cormorant">SHARE YOUR SNAPS</h3>
+                            <p>Scan the QR code below during the ceremonies to upload your photos directly to our digital album.</p>
+                        </div>
+                        
+                        <div class="qr-code-wrapper">
+                            <!-- Styled vector SVG QR code (mocked) -->
+                            <svg class="qr-code-svg" viewBox="0 0 100 100">
+                                <!-- QR Frame -->
+                                <rect x="5" y="5" width="90" height="90" rx="6" fill="none" stroke="var(--gold)" stroke-width="2"/>
+                                <!-- Finding patterns (top-left) -->
+                                <rect x="15" y="15" width="20" height="20" fill="var(--sage-dark)"/>
+                                <rect x="19" y="19" width="12" height="12" fill="var(--ivory)"/>
+                                <rect x="22" y="22" width="6" height="6" fill="var(--gold)"/>
+                                <!-- Finding patterns (top-right) -->
+                                <rect x="65" y="15" width="20" height="20" fill="var(--sage-dark)"/>
+                                <rect x="69" y="19" width="12" height="12" fill="var(--ivory)"/>
+                                <rect x="72" y="22" width="6" height="6" fill="var(--gold)"/>
+                                <!-- Finding patterns (bottom-left) -->
+                                <rect x="15" y="65" width="20" height="20" fill="var(--sage-dark)"/>
+                                <rect x="19" y="69" width="12" height="12" fill="var(--ivory)"/>
+                                <rect x="22" y="72" width="6" height="6" fill="var(--gold)"/>
+                                <!-- Central couple logo / heart motif in QR -->
+                                <path d="M 50 44 C 47 40, 41 40, 39 44 C 37 48, 45 56, 50 60 C 55 56, 63 48, 61 44 C 59 40, 53 40, 50 44 Z" fill="var(--dusty-rose)"/>
+                                <!-- Random code blocks -->
+                                <rect x="42" y="15" width="5" height="5" fill="var(--sage-dark)"/>
+                                <rect x="50" y="20" width="5" height="10" fill="var(--sage)"/>
+                                <rect x="42" y="32" width="10" height="5" fill="var(--gold)"/>
+                                <rect x="15" y="42" width="10" height="5" fill="var(--sage)"/>
+                                <rect x="20" y="50" width="5" height="5" fill="var(--sage-dark)"/>
+                                <rect x="75" y="42" width="10" height="10" fill="var(--sage-dark)"/>
+                                <rect x="65" y="55" width="5" height="5" fill="var(--gold)"/>
+                                <rect x="42" y="65" width="10" height="5" fill="var(--sage)"/>
+                                <rect x="55" y="65" width="5" height="10" fill="var(--sage-dark)"/>
+                                <rect x="42" y="75" width="5" height="5" fill="var(--gold)"/>
+                                <rect x="65" y="75" width="10" height="5" fill="var(--sage)"/>
+                                <rect x="75" y="65" width="5" height="5" fill="var(--sage-dark)"/>
+                            </svg>
+                        </div>
+                        <p class="qr-footer-text">Powered by Google Drive &bull; No app download required</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Digital Invitation Utilities -->
+        <section id="utilities" class="section utilities-section">
+            <div class="container text-center">
+                <div class="section-header">
+                    <h2 class="section-title cormorant">DIGITAL INVITATION UTILITIES</h2>
+                    <p class="section-subtitle">Download, share, and sync event configurations</p>
+                </div>
+
+                <div class="utilities-grid scroll-reveal">
+                    <!-- Utility 1: Download PDF -->
+                    <div class="utility-card">
+                        <div class="utility-icon"><i class="fas fa-file-pdf"></i></div>
+                        <h3 class="cormorant">Download Invite</h3>
+                        <p>Generate and download a beautifully styled PDF print version of the wedding invitation card.</p>
+                        <button id="btn-download-pdf" class="btn btn-secondary"><i class="fas fa-download"></i> Download PDF</button>
+                    </div>
+
+                    <!-- Utility 2: Set Reminders -->
+                    <div class="utility-card reminder-card">
+                        <div class="utility-icon"><i class="far fa-bell"></i></div>
+                        <h3 class="cormorant">Set Reminders</h3>
+                        <p>Get alerted 24h, 12h, and 1h prior to the Muhurtham. Choose your coordinates:</p>
+                        
+                        <div class="reminder-actions-row">
+                            <button id="btn-reminder-ics" class="btn btn-secondary btn-small" title="Download Calendar invite with Alarms"><i class="far fa-calendar-check"></i> Calendar Alarms</button>
+                            <button id="btn-reminder-notify" class="btn btn-secondary btn-small" title="Enable browser Web Notifications"><i class="far fa-comment-dots"></i> Browser Push</button>
+                        </div>
+                        
+                        <div class="reminder-form-inline">
+                            <input type="email" id="reminder-email-input" placeholder="Enter email for notifications" aria-label="Email Address">
+                            <button id="btn-reminder-email" class="btn btn-primary btn-small">Remind Me</button>
+                        </div>
+                        <div id="reminder-status-msg" class="reminder-status-text hidden"></div>
+                    </div>
+
+                    <!-- Utility 3: Share on WhatsApp -->
+                    <div class="utility-card">
+                        <div class="utility-icon"><i class="fab fa-whatsapp"></i></div>
+                        <h3 class="cormorant">Share Invite</h3>
+                        <p>Share this digital invitation link and details directly with friends and relatives on WhatsApp.</p>
+                        <a id="btn-share-whatsapp" href="https://api.whatsapp.com/send?text=You+are+cordially+invited+to+the+wedding+of+B.B.+Naveenkrishna+%26+G.+Nehashree+on+August+23%2C+2026.+View+the+digital+invite+here%3A+https%3A%2F%2Fwedding-invite.com" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fas fa-share"></i> Share on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="ganesha-gold-logo">ॐ</div>
+                <p class="ramajayam-footer">Sri Ramajayam | ஶ்ரீ ராமஜெயம்</p>
+                <h2 class="couple-name-footer cormorant font-gradient">Naveenkrishna & Nehashree</h2>
+                <p class="footer-hashtag">#NaNe</p>
+                <p class="footer-quote">"Two life streams intersecting in harmony, bound forever in love."</p>
+                <div class="pastel-avatar-wrapper">
+                    <div class="pastel-avatar sticker-couple-dancing margin-auto"></div>
+                </div>
+                <p class="compliments">With best compliments from Friends & Relatives</p>
+                <div class="footer-divider"></div>
+                <p class="footer-copyright">&copy; 2026 Naveenkrishna & Nehashree. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- JS Scripts -->
+    <script src="index.js"></script>
+</body>
+</html>
