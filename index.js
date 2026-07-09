@@ -7,7 +7,7 @@ const startApp = () => {
     const strangerHashtag = document.getElementById('stranger-hashtag');
     const canvas = document.getElementById('garden-canvas');
 
-    if (strangerHashtag && canvas) {
+    if (canvas) {
         let scene, camera, renderer;
         let flowersGroup, lightsGroup;
         let butterflies = [];
@@ -374,15 +374,8 @@ const startApp = () => {
                 }
             }
 
-            // Fade preloader gate cover layer out
-            gsap.to(invitationGate, {
-                opacity: 0,
-                duration: 0.8,
-                ease: "power2.out",
-                onComplete: () => {
-                    if (invitationGate) invitationGate.style.display = 'none';
-                }
-            });
+            // Hide preloader gate immediately
+            if (invitationGate) invitationGate.style.display = 'none';
 
             // Reveal main content layers
             if (mainContent) mainContent.classList.remove('hidden-content');
@@ -391,18 +384,21 @@ const startApp = () => {
             startFoliageFall();
         };
 
-        // Start Stranger Things cinematic entrance
-        // Start Stranger Things cinematic entrance using single native CSS keyframe animation
-        strangerHashtag.style.animation = 'stranger-entrance 3.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards';
-        
-        // Initialize Three.js scene in background
-        initThreeScene();
-        animate(0);
+        // Initialize Three.js scene in background (catch errors if WebGL is disabled or unsupported)
+        try {
+            initThreeScene();
+            animate(0);
+        } catch (e) {
+            console.warn("WebGL initialization failed. Falling back to clean 2D view.", e);
+            if (canvas) canvas.style.display = 'none';
+            // Force reveal all scroll-reveal elements immediately for a clean static fallback
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                el.classList.add('reveal-active');
+            });
+        }
 
-        // Fade out preloader gate and enter invitation at the end of the keyframe timeline (3.2s)
-        setTimeout(() => {
-            enterInvitationAutomatically();
-        }, 3200);
+        // Immediately enter invitation (skip splash screen)
+        enterInvitationAutomatically();
     }
 
     // -------------------------------------------------------------
@@ -494,49 +490,7 @@ const startApp = () => {
         petalsContainer.appendChild(particle);
     }
 
-    // -------------------------------------------------------------
-    // 3. COUNTDOWN TIMER
-    // -------------------------------------------------------------
-    // Target Date: August 23, 2026, 07:30 AM (Muhurtham)
-    const weddingDate = new Date('August 23, 2026 07:30:00').getTime();
 
-    const updateCountdown = () => {
-        const now = new Date().getTime();
-        const difference = weddingDate - now;
-
-        if (difference < 0) {
-            const container = document.querySelector('.countdown-container');
-            if (container) {
-                container.innerHTML = `
-                    <div class="countdown-finished cormorant font-gradient">
-                        <h3>The Celebrations Have Begun!</h3>
-                    </div>
-                `;
-            }
-            clearInterval(countdownInterval);
-            return;
-        }
-
-        // Time calculations
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        // Render values, padding single digits with leading zero
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minsEl = document.getElementById('minutes');
-        const secsEl = document.getElementById('seconds');
-
-        if (daysEl) daysEl.innerText = String(days).padStart(2, '0');
-        if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
-        if (minsEl) minsEl.innerText = String(minutes).padStart(2, '0');
-        if (secsEl) secsEl.innerText = String(seconds).padStart(2, '0');
-    };
-
-    updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
 
     // -------------------------------------------------------------
     // 4. PINTEREST-STYLE LIGHTBOX MODAL
@@ -559,7 +513,7 @@ const startApp = () => {
         const caption = item.getAttribute('data-caption');
 
         lightboxImg.src = src;
-        lightboxCaption.innerText = caption;
+        lightboxCaption.innerText = caption || '';
 
         lightboxModal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Lock scrolling
@@ -617,8 +571,8 @@ const startApp = () => {
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -45px 0px'
+        threshold: 0.01,
+        rootMargin: '0px 0px 100px 0px'
     });
 
     revealElements.forEach(element => {

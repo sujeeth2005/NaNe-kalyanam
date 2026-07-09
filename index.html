@@ -26,7 +26,7 @@
     <div id="petals-container" class="petals-container"></div>
 
     <!-- 3D WebGL Secret Garden Preloader Gate -->
-    <div id="invitation-gate" class="preloader-gate 3d-garden-gate">
+    <div id="invitation-gate" class="preloader-gate 3d-garden-gate" style="display: none;">
         <!-- Stranger Things Chapter Style Loader -->
         <div id="stranger-loader" class="stranger-loader-container">
             <h1 id="stranger-hashtag" class="stranger-hashtag cormorant">#NaNe</h1>
@@ -35,7 +35,7 @@
 
 
     <!-- Main Container -->
-    <main id="main-content" class="main-content hidden-content">
+    <main id="main-content" class="main-content">
         
         <!-- 1. Hero Section -->
         <section id="hero" class="hero-section">
@@ -112,6 +112,44 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    (function() {
+                        const weddingDate = new Date('2026-08-23T07:30:00').getTime();
+                        const updateCountdown = () => {
+                            const now = new Date().getTime();
+                            const difference = weddingDate - now;
+
+                            if (difference < 0) {
+                                const container = document.querySelector('.hero-bottom-countdown');
+                                if (container) {
+                                    container.innerHTML = `
+                                        <div class="countdown-finished cormorant font-gradient" style="text-align: center; width: 100%;">
+                                            <h3>The Celebrations Have Begun!</h3>
+                                        </div>
+                                    `;
+                                }
+                                return;
+                            }
+
+                            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                            const daysEl = document.getElementById('days');
+                            const hoursEl = document.getElementById('hours');
+                            const minsEl = document.getElementById('minutes');
+                            const secsEl = document.getElementById('seconds');
+
+                            if (daysEl) daysEl.innerText = String(days).padStart(2, '0');
+                            if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
+                            if (minsEl) minsEl.innerText = String(minutes).padStart(2, '0');
+                            if (secsEl) secsEl.innerText = String(seconds).padStart(2, '0');
+                        };
+                        updateCountdown();
+                        setInterval(updateCountdown, 1000);
+                    })();
+                </script>
             </div>
 
             <div class="arrow-down animate-bounce">
@@ -285,53 +323,28 @@
                 <!-- Pinterest-style Masonry Gallery Layout -->
                 <div class="pinterest-gallery scroll-reveal">
                     <!-- Item 1: Sunset Couple Close-Up -->
-                    <div class="masonry-item item-normal" data-src="assets/sunset_couple.jpg" data-caption="Cinematic Sunset Moments // Naveenkrishna & Nehashree">
+                    <div class="masonry-item item-normal" data-src="assets/sunset_couple.jpg">
                         <img src="assets/sunset_couple.jpg" alt="Couple Sunset" class="masonry-img">
-                        <div class="masonry-overlay">
-                            <span class="cormorant">Union Moments</span>
-                        </div>
                     </div>
-                    <!-- Item 2: Bride Namaste (Kept) -->
-                    <div class="masonry-item item-tall" data-src="assets/bride_namaste.jpg" data-caption="Bride Greeting Dossier // Kanjeevaram Saree Grace">
+                    <!-- Item 2: Bride Namaste -->
+                    <div class="masonry-item item-tall" data-src="assets/bride_namaste.jpg">
                         <img src="assets/bride_namaste.jpg" alt="Bride Greeting" class="masonry-img">
-                        <div class="masonry-overlay">
-                            <span class="cormorant">Sartorial Grace</span>
-                        </div>
                     </div>
-                    <!-- Item 3: Groom Namaste (Kept) -->
-                    <div class="masonry-item item-normal" data-src="assets/groom_namaste.jpg" data-caption="Groom Greeting Dossier // Sherwani Elegance">
+                    <!-- Item 3: Groom Namaste -->
+                    <div class="masonry-item item-normal" data-src="assets/groom_namaste.jpg">
                         <img src="assets/groom_namaste.jpg" alt="Groom Greeting" class="masonry-img">
-                        <div class="masonry-overlay">
-                            <span class="cormorant">New Chapter</span>
-                        </div>
                     </div>
-                    <!-- Item 4: Childhood Polaroids (Kept) -->
-                    <div class="masonry-item item-very-tall" data-src="assets/childhood_photos.png" data-caption="Nostalgic Childhood Stream // Retro Polaroid Mappings">
-                        <img src="assets/childhood_photos.png" alt="Childhood Memories" class="masonry-img">
-                        <div class="masonry-overlay">
-                            <span class="cormorant">Childhood Archives</span>
-                        </div>
+                    <!-- Item 4: Family Ceremony Portrait -->
+                    <div class="masonry-item item-tall" data-src="assets/family_group.jpg">
+                        <img src="assets/family_group.jpg" alt="Family Ceremony" class="masonry-img">
                     </div>
-                    <!-- Item 5: Real Proposal Moment -->
-                    <div class="masonry-item item-tall" data-src="assets/propose.jpg" data-caption="Ring Exchange Protocol // Proposal Moment">
-                        <img src="assets/propose.jpg" alt="Engagement proposal" class="masonry-img">
-                        <div class="masonry-overlay">
-                            <span class="cormorant">Engagement Ceremony</span>
-                        </div>
-                    </div>
-                    <!-- Item 6: Sofa Couple Portrait -->
-                    <div class="masonry-item item-normal" data-src="assets/sofa_couple.jpg" data-caption="Grand Reception Moments // Elegant Couple Portrait">
+                    <!-- Item 5: Sofa Couple Portrait -->
+                    <div class="masonry-item item-normal" data-src="assets/sofa_couple.jpg">
                         <img src="assets/sofa_couple.jpg" alt="Sofa Couple" class="masonry-img">
-                        <div class="masonry-overlay">
-                            <span class="cormorant">Reception Moments</span>
-                        </div>
                     </div>
-                    <!-- Item 7: Family & Friends Group -->
-                    <div class="masonry-item item-tall" data-src="assets/men_group.jpg" data-caption="Family & Friends // Groom's Squad Celebration">
+                    <!-- Item 6: Family & Friends Group -->
+                    <div class="masonry-item item-tall" data-src="assets/men_group.jpg">
                         <img src="assets/men_group.jpg" alt="Groom's Squad" class="masonry-img">
-                        <div class="masonry-overlay">
-                            <span class="cormorant">Wedding Guests</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -476,6 +489,6 @@
     </main>
 
     <!-- JS Scripts -->
-    <script src="index.js"></script>
+    <script src="index.js?v=1.0.3"></script>
 </body>
 </html>
