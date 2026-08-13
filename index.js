@@ -717,6 +717,28 @@ const startApp = () => {
             }
         });
     }
+
+    // Share functionality (Web Share API for native mobile sharing support)
+    const btnShareWhatsapp = document.getElementById('btn-share-whatsapp');
+    if (btnShareWhatsapp) {
+        btnShareWhatsapp.addEventListener('click', (e) => {
+            const shareText = "You are cordially invited to the wedding of B.B. Naveenkrishna & G. Nehashree on August 23, 2026. View the digital invite here:";
+            const shareUrl = "https://na-ne-kalyanam.vercel.app";
+            
+            if (navigator.share) {
+                e.preventDefault(); // Stop navigation to api.whatsapp.com URL
+                navigator.share({
+                    title: 'Naveenkrishna & Nehashree Wedding Invitation',
+                    text: `${shareText} ${shareUrl}`,
+                    url: shareUrl
+                }).catch((err) => {
+                    console.error('Error sharing:', err);
+                    // Fall back to original href if user cancelled or sharing failed
+                    window.open(btnShareWhatsapp.href, '_blank');
+                });
+            }
+        });
+    }
 };
 
 if (document.readyState === 'loading') {
