@@ -623,7 +623,7 @@ const startApp = () => {
                 'CALSCALE:GREGORIAN',
                 'METHOD:PUBLISH',
                 'BEGIN:VEVENT',
-                'UID:nane-wedding-muhurtham-2026@wedding-invite.com',
+                'UID:nane-wedding-muhurtham-2026@na-ne-kalyanam.vercel.app',
                 'DTSTAMP:20260630T000000Z',
                 'DTSTART:20260823T020000Z', // 07:30 AM IST is 02:00:00 UTC
                 'DTEND:20260823T033000Z',   // 09:00 AM IST is 03:30:00 UTC

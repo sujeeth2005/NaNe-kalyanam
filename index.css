@@ -1910,9 +1910,11 @@ body {
     border: 1px solid rgba(74, 96, 84, 0.08);
 }
 
-.qr-code-svg {
+.qr-code-svg,
+.qr-code-img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
 .qr-footer-text {
